@@ -20,7 +20,7 @@ public class GateSlotReservation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="GATE_SLOT_RESERVATION_ID")
-	private long id;
+	private Long id;
 	@Column(name="RESERVATION_NUMBER")
 	private String reservationNo;
 	@OneToOne
@@ -35,10 +35,10 @@ public class GateSlotReservation {
 	private Time fromTime;
 	@Column(name="TILL_TIME")
 	private Time tillTime;
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getReservationNo() {

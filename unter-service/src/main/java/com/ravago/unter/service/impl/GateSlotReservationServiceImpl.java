@@ -54,7 +54,8 @@ public class GateSlotReservationServiceImpl implements GateSlotReservationServic
 
 	@Override
 	public GateSlotReservationResult getGateSlotReservation(String reservationNo) {
-		return gateSlotReservationMapper.map(gateSlotReservationRepository.findByReservationNo(reservationNo));
+		GateSlotReservation r = gateSlotReservationRepository.findByReservationNo(reservationNo);
+		return gateSlotReservationMapper.map(r);
 	}
 	
 	
