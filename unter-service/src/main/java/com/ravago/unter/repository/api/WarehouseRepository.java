@@ -6,4 +6,5 @@ import com.ravago.unter.domain.Warehouse;
 
 public interface WarehouseRepository extends JpaRepository<Warehouse, Long> {
 
+	Warehouse findByName(String name);
 }

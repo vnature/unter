@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ravago.unter.domain.GateSlotReservation;
+import com.ravago.unter.domain.Warehouse;
 import com.ravago.unter.repository.api.GateRepository;
 import com.ravago.unter.repository.api.GateSlotReservationRepository;
 import com.ravago.unter.repository.api.OrderRepository;
+import com.ravago.unter.repository.api.WarehouseRepository;
 import com.ravago.unter.service.api.GateSlotReservationCommand;
 import com.ravago.unter.service.api.GateSlotReservationResult;
 import com.ravago.unter.service.api.GateSlotReservationService;
@@ -24,6 +26,8 @@ public class GateSlotReservationServiceImpl implements GateSlotReservationServic
 	private OrderRepository orderRepository;
 	@Autowired
 	private GateRepository gateRepository;
+	@Autowired
+	private WarehouseRepository Warehouse;
 	@Autowired
 	private GateSlotReservationMapper gateSlotReservationMapper;
 	
@@ -39,8 +43,8 @@ public class GateSlotReservationServiceImpl implements GateSlotReservationServic
 		return r.getReservationNo();
 	}
 
-	public List<GateSlotReservationResult> listGateSlotReservations(String warehouse, Date loadDate) {
-		return gateSlotReservationMapper.map(gateSlotReservationRepository.findByWarehouseNameAndLoadDate(warehouse, loadDate));
+	public List<GateSlotReservationResult> listGateSlotReservations(String warehouseName, Date loadDate) {
+		return gateSlotReservationMapper.map(gateSlotReservationRepository.findByGateWarehouseNameAndLoadDate(warehouseName, loadDate));
 	}
 
 	

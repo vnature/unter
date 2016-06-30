@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.ravago.unter.domain.GateSlotReservation;
+import com.ravago.unter.domain.Warehouse;
 
 public interface GateSlotReservationRepository extends JpaRepository<GateSlotReservation, Long>{
 
-	List<GateSlotReservation> findByWarehouseNameAndLoadDate(String warehouse, Date loadDate);
+	List<GateSlotReservation> findByGateWarehouseNameAndLoadDate(String warehouseName, Date loadDate);
 }
