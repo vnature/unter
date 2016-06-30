@@ -6,4 +6,5 @@ import com.ravago.unter.domain.Gate;
 
 public interface GateRepository extends JpaRepository<Gate, Long> {
 
+	Gate findByName(String name);
 }
