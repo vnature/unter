@@ -10,6 +10,8 @@ import com.ravago.unter.domain.GateSlotReservation;
 import com.ravago.unter.domain.Warehouse;
 
 public interface GateSlotReservationRepository extends JpaRepository<GateSlotReservation, Long>{
-
+	
+	GateSlotReservation findByReservationNo(String reservationNo);
+	
 	List<GateSlotReservation> findByGateWarehouseNameAndLoadDate(String warehouseName, Date loadDate);
 }

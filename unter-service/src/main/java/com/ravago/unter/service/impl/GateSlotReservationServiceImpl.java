@@ -1,5 +1,6 @@
 package com.ravago.unter.service.impl;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -33,19 +34,30 @@ public class GateSlotReservationServiceImpl implements GateSlotReservationServic
 	
 	public String reserveGateSlot(GateSlotReservationCommand gsr) {
 		GateSlotReservation r = new GateSlotReservation(); 
-		r.setFromTime(gsr.getFromTime());
+		r.setFromTime(toTime(gsr.getFromTime()));
 		r.setLoadDate(gsr.getLoadDate());
-		r.setTillTime(gsr.getTillTime());
+		r.setTillTime(toTime(gsr.getTillTime()));
 		r.setGate(gateRepository.findByName(gsr.getGate()));
 		r.setOrder(orderRepository.findByOrderNo(gsr.getOrderNo()));
 		r.setReservationNo(UUID.randomUUID().toString());
 		gateSlotReservationRepository.save(r);
 		return r.getReservationNo();
 	}
+	
+	private Time toTime(Date d) {
+		return new Time(d.getTime());
+	}
 
 	public List<GateSlotReservationResult> listGateSlotReservations(String warehouseName, Date loadDate) {
 		return gateSlotReservationMapper.map(gateSlotReservationRepository.findByGateWarehouseNameAndLoadDate(warehouseName, loadDate));
 	}
+
+	@Override
+	public GateSlotReservationResult getGateSlotReservation(String reservationNo) {
+		return gateSlotReservationMapper.map(gateSlotReservationRepository.findByReservationNo(reservationNo));
+	}
+	
+	
 
 	
 }

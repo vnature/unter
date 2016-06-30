@@ -19,7 +19,7 @@ public class Warehouse {
 	@Column(name="NAME")
 	private String name;
 	@OneToMany
-	@JoinColumn(name="WAREHOUSE_ID",referencedColumnName="WAREHOUSE_ID")
+	@JoinColumn(name="DASH106882.WAREHOUSE_ID",referencedColumnName="WAREHOUSE_ID")
 	private List<Gate> gates;
 	
 	public long getId() {

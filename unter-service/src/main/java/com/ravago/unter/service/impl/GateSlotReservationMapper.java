@@ -12,6 +12,9 @@ import com.ravago.unter.service.api.GateSlotReservationResult;
 public class GateSlotReservationMapper {
 
 	public GateSlotReservationResult map(GateSlotReservation from) {
+		if (from == null) {
+			return null;
+		}
 		GateSlotReservationResult to = new GateSlotReservationResult();
 		to.setFromTime(from.getFromTime());
 		to.setGate(from.getGate().getName());
