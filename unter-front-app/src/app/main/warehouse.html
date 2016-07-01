@@ -1,1 +1,10 @@
-<div>warehouse</div>
+<div>
+	<select ng-model="warehouses">
+       <option 
+           ng-repeat="warehouse in warehouses" 
+           value="{{warehouse.name}}"
+       >
+           {{warehouse.names}}
+       </option>
+    </select>
+</div>

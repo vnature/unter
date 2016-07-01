@@ -6,7 +6,9 @@
     .controller('WarehouseController',['$scope','$state', WarehouseController]);
 
   /** @ngInject */
-  function WarehouseController($scope, $state) {
-    
+  function WarehouseController($scope, $state, unterService) {
+    unterService.getWarehouses().then(function(data){
+      $scope.warehouses = data;
+    })
   }
 })();
