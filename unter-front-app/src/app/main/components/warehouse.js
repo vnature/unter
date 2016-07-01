@@ -9,6 +9,6 @@
   function WarehouseController($scope, $state, unterService) {
     unterService.getWarehouses().then(function(data){
       $scope.warehouses = data;
-    })
+    });
   }
 })();
