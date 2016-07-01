@@ -8,13 +8,16 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ravago.unter.domain.Gate;
 import com.ravago.unter.domain.GateSlotReservation;
+import com.ravago.unter.domain.Order;
 import com.ravago.unter.domain.Warehouse;
 import com.ravago.unter.repository.api.GateRepository;
 import com.ravago.unter.repository.api.GateSlotReservationRepository;
 import com.ravago.unter.repository.api.OrderRepository;
 import com.ravago.unter.repository.api.WarehouseRepository;
 import com.ravago.unter.service.api.GateSlotReservationCommand;
+import com.ravago.unter.service.api.GateSlotReservationException;
 import com.ravago.unter.service.api.GateSlotReservationResult;
 import com.ravago.unter.service.api.GateSlotReservationService;
 
@@ -37,8 +40,16 @@ public class GateSlotReservationServiceImpl implements GateSlotReservationServic
 		r.setFromTime(toTime(gsr.getFromTime()));
 		r.setLoadDate(gsr.getLoadDate());
 		r.setTillTime(toTime(gsr.getTillTime()));
-		r.setGate(gateRepository.findByName(gsr.getGate()));
-		r.setOrder(orderRepository.findByOrderNo(gsr.getOrderNo()));
+		Gate gate = gateRepository.findByName(gsr.getGate());
+		if (gate == null) {
+			throw new GateSlotReservationException("Gate does not exists with the nmae "+gsr.getGate());
+		}
+		r.setGate(gate);
+		Order order = orderRepository.findByOrderNo(gsr.getOrderNo());
+		if (order == null) {
+			throw new GateSlotReservationException("Order does not exist with number "+gsr.getOrderNo());
+		}
+		r.setOrder(order);
 		r.setReservationNo(UUID.randomUUID().toString());
 		gateSlotReservationRepository.save(r);
 		return r.getReservationNo();

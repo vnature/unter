@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.ravago.unter.service.api.GateSlotReservationCommand;
+import com.ravago.unter.service.api.GateSlotReservationException;
 import com.ravago.unter.service.api.GateSlotReservationResult;
 import com.ravago.unter.service.api.GateSlotReservationService;
 
@@ -29,10 +30,14 @@ public class GatSlotReservationController {
 	private GateSlotReservationService gateSlotReservationService;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> reserve(@RequestBody GateSlotReservationCommand reservation, UriComponentsBuilder b) {
-		String reservationNo = gateSlotReservationService.reserveGateSlot(reservation);
-		URI location = b.path("/gateslots/reservations/{reservationNo}").buildAndExpand(reservationNo).toUri();
-		return ResponseEntity.created(location).build();
+	public ResponseEntity<?> reserve(@RequestBody GateSlotReservationCommand reservation, UriComponentsBuilder b) {
+		try {
+			String reservationNo = gateSlotReservationService.reserveGateSlot(reservation);
+			URI location = b.path("/gateslots/reservations/{reservationNo}").buildAndExpand(reservationNo).toUri();
+			return ResponseEntity.created(location).build();
+		} catch(GateSlotReservationException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
 	}
 	
 	@RequestMapping(value="/{reservationNo}", method=RequestMethod.GET)
