@@ -6,4 +6,5 @@ import com.ravago.unter.domain.Carrier;
 
 public interface CarrierRepository extends JpaRepository<Carrier, Long> {
 
+	Carrier findByname(String name);
 }

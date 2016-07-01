@@ -14,6 +14,9 @@ public class Carrier {
 	private long id;
 	@Column(name="NAME")
 	private String name;
+	@Column(name="PASSWORD")
+	private String password;
+	
 	public long getId() {
 		return id;
 	}
@@ -25,6 +28,12 @@ public class Carrier {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	
