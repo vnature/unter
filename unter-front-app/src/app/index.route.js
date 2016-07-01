@@ -18,6 +18,15 @@
         templateUrl: 'app/main/warehouse.html',
         controller: 'WarehouseController',
         controllerAs:'warehouse'
+      }).state('gates',{
+        url:'/gates',
+        templateUrl: 'app/main/gates.html',
+        controller: 'GatesController',
+        controllerAs:'gates',
+        params:{
+          warehouse:null,
+          date:null
+        }
       });
 
     $urlRouterProvider.otherwise('/');
