@@ -23,7 +23,7 @@ public class GateSlotReservation {
 	private Long id;
 	@Column(name="RESERVATION_NUMBER")
 	private String reservationNo;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="ORDER_ID", referencedColumnName="ORDER_ID")
 	private Order order;
 	@ManyToOne
