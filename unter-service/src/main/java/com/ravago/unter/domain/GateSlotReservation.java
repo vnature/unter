@@ -35,6 +35,14 @@ public class GateSlotReservation {
 	private Time fromTime;
 	@Column(name="TILL_TIME")
 	private Time tillTime;
+	@Column(name="REFERENCE")
+	private String reference;
+	@Column(name="NUMBER_PLATE")
+	private String numberPlate;
+	@Column(name="DRIVER_NAME")
+	private String driverName;
+	@Column(name="VEHICLE_TYPE")
+	private String vehicleType;
 	public Long getId() {
 		return id;
 	}
@@ -77,6 +85,12 @@ public class GateSlotReservation {
 	public void setTillTime(Time tillTime) {
 		this.tillTime = tillTime;
 	}
-	
-	
+	public String getReference() { return this.reference; }
+	public void setReference(String reference) { this.reference = reference; }
+	public String getNumberPlate() { return this.numberPlate; }
+	public void setNumberPlate(String numberPlate) { this.numberPlate = numberPlate; }
+	public String getDriverName() { return this.driverName; }
+	public void setDriverName(String driverName) { this.driverName = driverName; }
+	public String getVehicleType() { return this.vehicleType; }
+	public void setVehicleType(String vehicleType) { this.vehicleType = vehicleType; }
 }

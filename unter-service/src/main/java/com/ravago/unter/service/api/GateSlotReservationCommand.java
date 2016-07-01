@@ -15,6 +15,10 @@ public class GateSlotReservationCommand {
 	private Date fromTime;
 	@JsonFormat(locale = "be", shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "GMT")
 	private Date tillTime;
+	private String reference;
+	private String numberPlate;
+	private String driverName;
+	private String vehicleType;
 	public String getWarehouse() {
 		return warehouse;
 	}
@@ -51,6 +55,12 @@ public class GateSlotReservationCommand {
 	public void setTillTime(Date tillTime) {
 		this.tillTime = tillTime;
 	}
-	
-	
+	public String getReference() { return this.reference; }
+	public void setReference(String reference) { this.reference = reference; }
+	public String getNumberPlate() { return this.numberPlate; }
+	public void setNumberPlate(String numberPlate) { this.numberPlate = numberPlate; }
+	public String getDriverName() { return this.driverName; }
+	public void setDriverName(String driverName) { this.driverName = driverName; }
+	public String getVehicleType() { return this.vehicleType; }
+	public void setVehicleType(String vehicleType) { this.vehicleType = vehicleType; }
 }

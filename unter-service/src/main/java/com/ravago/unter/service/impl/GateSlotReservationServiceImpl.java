@@ -51,6 +51,10 @@ public class GateSlotReservationServiceImpl implements GateSlotReservationServic
 		}
 		r.setOrder(order);
 		r.setReservationNo(UUID.randomUUID().toString());
+		r.setDriverName(gsr.getDriverName());
+		r.setReference(gsr.getReference());
+		r.setVehicleType(gsr.getVehicleType());
+		r.setNumberPlate(gsr.getNumberPlate());
 		gateSlotReservationRepository.save(r);
 		return r.getReservationNo();
 	}
@@ -68,8 +72,4 @@ public class GateSlotReservationServiceImpl implements GateSlotReservationServic
 		GateSlotReservation r = gateSlotReservationRepository.findByReservationNo(reservationNo);
 		return gateSlotReservationMapper.map(r);
 	}
-	
-	
-
-	
 }

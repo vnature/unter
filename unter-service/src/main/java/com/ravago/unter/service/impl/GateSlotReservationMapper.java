@@ -22,6 +22,10 @@ public class GateSlotReservationMapper {
 		to.setOrderNo(from.getOrder().getOrderNo());
 		to.setTillTime(from.getTillTime());
 		to.setWarehouse(from.getGate().getWarehouse().getName());
+		to.setDriverName(from.getDriverName());
+		to.setVehicleType(from.getVehicleType());
+		to.setReference(from.getReference());
+		to.setNumberPlate(from.getNumberPlate());
 		return to;
 	}
 	
