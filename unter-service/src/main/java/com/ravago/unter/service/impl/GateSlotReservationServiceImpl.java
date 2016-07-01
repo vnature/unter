@@ -1,6 +1,7 @@
 package com.ravago.unter.service.impl;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -8,10 +9,14 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ravago.unter.domain.Carrier;
+import com.ravago.unter.domain.CarrierSession;
 import com.ravago.unter.domain.Gate;
 import com.ravago.unter.domain.GateSlotReservation;
 import com.ravago.unter.domain.Order;
 import com.ravago.unter.domain.Warehouse;
+import com.ravago.unter.repository.api.CarrierRepository;
+import com.ravago.unter.repository.api.CarrierSessionRepository;
 import com.ravago.unter.repository.api.GateRepository;
 import com.ravago.unter.repository.api.GateSlotReservationRepository;
 import com.ravago.unter.repository.api.OrderRepository;
@@ -24,6 +29,10 @@ import com.ravago.unter.service.api.GateSlotReservationService;
 @Service
 public class GateSlotReservationServiceImpl implements GateSlotReservationService {
 
+	@Autowired
+	private CarrierRepository CarrierRepository;
+	@Autowired
+	private CarrierSessionRepository carrierSessionRepository;
 	@Autowired
 	private GateSlotReservationRepository gateSlotReservationRepository;
 	@Autowired
@@ -72,4 +81,16 @@ public class GateSlotReservationServiceImpl implements GateSlotReservationServic
 		GateSlotReservation r = gateSlotReservationRepository.findByReservationNo(reservationNo);
 		return gateSlotReservationMapper.map(r);
 	}
+	@Override
+	public List<GateSlotReservationResult> listCarrierGateSlotReservations(String sessionId) {
+		CarrierSession s = carrierSessionRepository.findBySessionId(sessionId);
+		if (s == null) {
+			return new ArrayList<>(); 
+		}
+		List<GateSlotReservation> reservations = gateSlotReservationRepository.findByOrderCarrierId(s.getCarrier().getId());
+		return gateSlotReservationMapper.map(reservations);
+	}
+	
+	
+
 }

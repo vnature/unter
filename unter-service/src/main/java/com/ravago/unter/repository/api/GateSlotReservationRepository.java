@@ -14,4 +14,6 @@ public interface GateSlotReservationRepository extends JpaRepository<GateSlotRes
 	GateSlotReservation findByReservationNo(String reservationNo);
 	
 	List<GateSlotReservation> findByGateWarehouseNameAndLoadDate(String warehouseName, Date loadDate);
+
+	List<GateSlotReservation> findByOrderCarrierId(Long carrierId);
 }

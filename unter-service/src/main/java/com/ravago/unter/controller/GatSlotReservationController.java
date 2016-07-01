@@ -55,4 +55,8 @@ public class GatSlotReservationController {
 		return ResponseEntity.ok().body(reservations);
 	}
 	
+	@RequestMapping(value="/sessions/{sessionId}", method=RequestMethod.GET)
+	public ResponseEntity<List<GateSlotReservationResult>> listCarrierReservations(@PathVariable("sessionId") String sessionId) {
+		return ResponseEntity.ok().body(gateSlotReservationService.listCarrierGateSlotReservations(sessionId));
+	}
 }

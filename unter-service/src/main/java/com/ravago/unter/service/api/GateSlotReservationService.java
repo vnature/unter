@@ -10,4 +10,6 @@ public interface GateSlotReservationService {
 	GateSlotReservationResult getGateSlotReservation(String reservationNo);
 	
 	List<GateSlotReservationResult> listGateSlotReservations(String warehouse, Date loadDate);
+
+	List<GateSlotReservationResult> listCarrierGateSlotReservations(String sessionId);
 }
