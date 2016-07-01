@@ -1,4 +1,4 @@
-package com.ravago.unter.domain;
+package com.ravago.unter.controller;
 
 import java.net.URI;
 import java.util.Date;
