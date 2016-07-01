@@ -41,8 +41,11 @@ public class GatSlotReservationController {
 	}
 	
 	@RequestMapping(value="/{reservationNo}", method=RequestMethod.GET)
-	public ResponseEntity<GateSlotReservationResult> get(@PathVariable("reservationNo") String reservationNo) {
+	public ResponseEntity<?> get(@PathVariable("reservationNo") String reservationNo) {
 		GateSlotReservationResult reservation = gateSlotReservationService.getGateSlotReservation(reservationNo);
+		if (reservation == null) {
+			return ResponseEntity.notFound().build();
+		}
 		return ResponseEntity.ok().body(reservation);
 	}
 	
